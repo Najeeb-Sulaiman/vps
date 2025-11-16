@@ -15,3 +15,15 @@ Log in with the new user:
 ```bash
 ssh najeeb@<the-server-ip>
 ```
+
+### Install Core Tooling
+### Docker & Docker Compose
+Follow this guide in the official docker documentation to install docker and other docket utilities:
+
+[Install Docker using the `apt` repository](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+
+### DevOps Utilities
+Install some server utilities:
+```bash
+sudo apt install -y git make unzip htop net-tools
+```
