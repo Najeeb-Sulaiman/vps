@@ -3,3 +3,15 @@ Follow the guide in the Hetzner's documentation to setup: [Setting up an ssh key
 
 The refer to the [connecting to your server](https://docs.hetzner.com/cloud/servers/getting-started/connecting-to-the-server/) guide.
 
+### Secure Root Access
+After connecting, create a new user in other to avoid using the root user for login:
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo adduser najeeb
+sudo usermod -aG sudo devops
+```
+
+Log in with the new user:
+```bash
+ssh najeeb@<the-server-ip>
+```
