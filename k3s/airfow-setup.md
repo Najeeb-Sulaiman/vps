@@ -71,3 +71,5 @@ helm install airflow apache-airflow/airflow \
   --timeout 10m0s
 ```
 Alternatively, specific tag like 16.4.0 can be used, if you want to avoid using `latest` in production.
+
+- If it's a simple timeout error with no `ImagePullBackOff` error on the PostgreSQL pod or the `airflow-migrations` is in ContainerCreating state. Just delete the failed release and try the install again with a longer timeout(`--timeout 10m0s`).
