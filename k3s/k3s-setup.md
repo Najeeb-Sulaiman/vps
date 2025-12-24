@@ -45,3 +45,11 @@ kubectl version --client
 kubectl get nodes
 ```
 This should work without errors.
+
+---
+
+How to check K3s status:
+```bash
+sudo systemctl status k3s
+```
+You should see “active (running)”.
