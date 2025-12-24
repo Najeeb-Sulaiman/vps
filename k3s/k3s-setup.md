@@ -28,3 +28,20 @@ kubectl get nodes
 helm install airflow apache-airflow/airflow ...
 ```
 without `sudo`.
+
+---
+
+### Kubectl setup
+
+**Note:** K3s already includes kubectl internally at:
+```bash
+/usr/bin/kubectl
+```
+So, no need to manually install kubectl.
+
+Verify kubectl:
+```bash
+kubectl version --client
+kubectl get nodes
+```
+This should work without errors.
