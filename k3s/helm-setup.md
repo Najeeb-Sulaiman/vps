@@ -22,3 +22,9 @@ echo "deb [signed-by=/usr/share/keyrings/helm.gpg] https://packages.buildkite.co
 sudo apt-get update
 sudo apt-get install helm
 ```
+
+### Post-Installation Setup
+After installation, verify it is working by checking the version:
+```bash
+helm version
+```
