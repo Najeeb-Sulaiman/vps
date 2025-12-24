@@ -1,4 +1,6 @@
 ## K3s Setup Guide
+Information about k3s and the installation can be found in the k3s docs here: https://docs.k3s.io/
+
 ### Install K3s (Traefik enabled)
 This installs a full Kubernetes distro, with Traefik as the default ingress controller:
 ```bash
