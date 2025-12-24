@@ -73,3 +73,46 @@ helm install airflow apache-airflow/airflow \
 Alternatively, specific tag like 16.4.0 can be used, if you want to avoid using `latest` in production.
 
 - If it's a simple timeout error with no `ImagePullBackOff` error on the PostgreSQL pod or the `airflow-migrations` is in ContainerCreating state. Just delete the failed release and try the install again with a longer timeout(`--timeout 10m0s`).
+
+
+## Values.yaml
+Configuration file of the Helm chart and so, of the Airflow deployment
+
+### Get the Chart values
+```bash
+helm show values apache-airflow/airflow > values.yaml
+To update the Airflow deployment
+```
+### Check the current revision
+```bash
+helm ls -n airflow
+```
+
+#### Upgrade the chart
+```bash
+helm upgrade --install airflow apache-airflow/airflow -n airflow -f values.yaml --debug
+```
+
+### Check after
+```bash
+helm ls -n airflow
+```
+
+## How to access the Airflow UI from your laptop
+By default, `kubectl port-forward` only listens on `localhost (127.0.0.1)` of the machine where you run the command. If you ran it on a VPS, it is listening for connections inside the VPS, not from your laptop.
+
+**To access the Airflow UI from your laptop:**
+
+A secure tunnel from your laptop to the VPS can be created. This makes your laptop think Airflow is running locally.
+
+1. Keep the command running on your VPS:
+```bash
+kubectl port-forward svc/airflow-api-server 8080:8080 --namespace airflow
+```
+2. Open a NEW terminal on your local laptop and run:
+```bash
+ssh -L 8080:localhost:8080 your-user@<vps-ip>
+```
+
+3. Access on your laptop: Open your browser and go to http://localhost:8080.
+
