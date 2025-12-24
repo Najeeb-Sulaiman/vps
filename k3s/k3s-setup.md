@@ -11,7 +11,7 @@ sudo kubectl get pods -A
 ```
 `Traefik` should be running in the `kube-system` namespace.
 
-### Save kubeconfig for local access and avoid using `sudo`
+### Save kubeconfig for local access to avoid using `sudo`
 Using `sudo` with `Kubectl/Helm` is often unnecessary if you move your K3s kubeconfig to your home directory. This allows you to run Helm commands as a regular user, which is more secure:
 ```bash
 mkdir -p ~/.kube
