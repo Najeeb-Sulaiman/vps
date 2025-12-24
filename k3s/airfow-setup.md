@@ -116,3 +116,5 @@ ssh -L 8080:localhost:8080 your-user@<vps-ip>
 
 3. Access on your laptop: Open your browser and go to http://localhost:8080.
 
+For more details on how these tunnels work, you can refer to the SSH.com Local Port Forwarding Guide:
+https://www.ssh.com/academy/ssh/tunneling-example
