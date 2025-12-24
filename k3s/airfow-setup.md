@@ -118,3 +118,34 @@ ssh -L 8080:localhost:8080 your-user@<vps-ip>
 
 For more details on how these tunnels work, you can refer to the SSH.com Local Port Forwarding Guide:
 https://www.ssh.com/academy/ssh/tunneling-example
+
+
+## How to stop running airflow in K3S
+To stop Airflow in K3s cluster, there are two primary options depending on whether you want to pause it temporarily or permanently remove it.
+
+1. Temporarily Stop (Scale Down):
+
+    If you want to stop the pods and free up RAM without deleting your settings, you can "scale" the deployments to zero. This keeps the configuration intact so you can restart it later.
+    Run these commands to stop the core components:
+
+    ```bash
+    # Stop the Webserver
+    kubectl scale deployment airflow-webserver -n airflow --replicas=0
+
+    # Stop the Scheduler (prevents new tasks from starting)
+    kubectl scale deployment airflow-scheduler -n airflow --replicas=0
+
+    # Stop the Worker (if using CeleryExecutor)
+    kubectl scale statefulset airflow-worker -n airflow --replicas=0
+    ```
+    To Restart: Run the same commands but change --replicas=0 to --replicas=1.
+
+2. Permanently Remove (Uninstall)
+    If you want to completely remove the Airflow instance and all its associated Kubernetes resources from the cluster, use the Helm uninstall command.
+    
+    ```bash
+    sudo helm uninstall airflow --namespace airflow
+    ```
+    This deletes the pods, services, and deployments created by the chart.
+    
+    By default, Helm does not delete Persistent Volume Claims (PVCs). Your database data and logs will remain on the disk unless you manually delete the PVCs: `kubectl delete pvc --all -n airflow.` 
