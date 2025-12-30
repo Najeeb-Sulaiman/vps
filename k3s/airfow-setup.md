@@ -120,6 +120,13 @@ For more details on how these tunnels work, you can refer to the SSH.com Local P
 https://www.ssh.com/academy/ssh/tunneling-example
 
 
+**To access the Airflow UI from any laptop by exposing the UI to the public internet:**
+
+```bash
+kubectl port-forward --address 0.0.0.0 svc/airflow-api-server 8080:8080 --namespace airflow
+```
+
+
 ## How to stop running airflow in K3S
 To stop Airflow in K3s cluster, there are two primary options depending on whether you want to pause it temporarily or permanently remove it.
 
